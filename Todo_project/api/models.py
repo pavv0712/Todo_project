@@ -6,7 +6,9 @@ class TodoGroup(models.Model):
     name = models.CharField(max_length=50)
     reg_date = models.DateField(auto_now_add=True)
     del_yn = models.BooleanField(default=False)
-
+    
+    def __str__(self):
+        return self.name
 class Todo(models.Model):
     seq = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -15,3 +17,6 @@ class Todo(models.Model):
     end_date = models.DateField(blank=True)
     del_yn = models.BooleanField(default=False)
     group = models.ForeignKey(TodoGroup, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

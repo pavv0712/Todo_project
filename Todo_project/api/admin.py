@@ -5,8 +5,8 @@ from .models import TodoGroup,Todo
 
 @admin.register(TodoGroup)
 class TodoGroupAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name']
 
 @admin.register(Todo)
 class TodoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['group','name','status','reg_date','end_date']
