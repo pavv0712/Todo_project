@@ -20,3 +20,21 @@ class Todo(models.Model):
 
     def __str__(self):
         return self.name
+
+class FavoriteGroup(models.Model):
+    seq = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    reg_date = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
+class Favorite(models.Model):
+    seq = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    url = models.CharField(max_length=100)
+    memo = models.TextField()
+    reg_date = models.DateField(auto_now_add=True)
+    group = models.ForeignKey(FavoriteGroup, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

@@ -4,11 +4,15 @@ from . import views
 from rest_framework.routers import DefaultRouter
 
 router = routers.DefaultRouter()
-router.register('todos', views.TodoViewSet)
+router.register('todo', views.TodoViewSet)
 router.register('todogroup', views.TodoGroupViewSet)
+router.register('favorite', views.FavoriteViewSet)
+router.register('favogroup', views.FavoriteGroupViewSet)
 
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('todos', views.TodoViewSet)
+    path('todo', views.TodoViewSet),
+    path('favorite', views.FavoriteViewSet),
+    path('favogroup', views.FavoriteGroupViewSet)
 ]
