@@ -1,35 +1,38 @@
-import API from 'API';
+import API from 'Api';
 import React from 'react'
 import { List, Button } from 'antd';
+import { RestOutlined  } from '@ant-design/icons';
 
 export default function Todo() {
     
     const[todo, setTodo] = React.useState(
-        {"진행중":[],
-        "완료":[],
-        "보류":[]}
+        {"pending":[],
+        "inprogress":[],
+        "end":[]}
         );
     
     React.useEffect(()=> {
         
-        API.get("").then(res=> {
+        API.get("/api/todo/?status=inprogress").then(res=> {
             const{data} = res;
             setTodo(prev => ({
-                ...prev, 진행중:data
+                ...prev, inprogress:data
             }));
         })
+    }, [])
     React.useEffect(()=> {
-        API.get("").then(res => {
+        API.get("api/todo/?status=end").then(res => {
             const{data} = res;
             setTodo(prev => ({
-                ...prev, 완료:data
+                ...prev, end:data
             }));
         })
+    }, [])
     React.useEffect(()=> {
-        API.get("").then(res => {
+        API.get("api/todo/?status=pending").then(res => {
             const{data} = res;
             setTodo(prev => ({
-                ...prev, 보류:data
+                ...prev, pending:data
             }))
         })
     }, [])
@@ -37,34 +40,16 @@ export default function Todo() {
     return (
         <>
         <List
-            header={<div>할일</div>}
-            style={{width:"33%",float:"left",paddingRight:"5px"}}
-            itemLayout="horizontal"
-            dataSource={todos.pending}
-            renderItem={item => (
-            <List.Item>
-                <List.Item.Meta
-                title={<span>{item.name}</span>}
-                description={<>
-                                <span>{item.group_name}</span> / <span>{item.reg_date}</span>
-                                <Button style={{float:"right"}} shape="circle" icon={<RestOutlined />} />
-                            </>
-                            }
-                />
-            </List.Item>
-            )}
-        />
-        <List
             header={<div>진행중</div>}
             style={{width:"33%",float:"left",paddingRight:"5px"}}
             itemLayout="horizontal"
-            dataSource={todos.inprogress}
+            dataSource={todo.inprogress}
             renderItem={item => (
             <List.Item>
                 <List.Item.Meta
                 title={<span>{item.name}</span>}
                 description={<>
-                                <span>{item.group_name}</span> / <span>{item.reg_date}</span>
+                                <span>{item.name}</span> / <span>{item.reg_date}</span>
                                 <Button style={{float:"right"}} shape="circle" icon={<RestOutlined />} />
                             </>
                             }
@@ -73,16 +58,34 @@ export default function Todo() {
             )}
         />
         <List
-            header={<div>종료</div>}
+            header={<div>완료</div>}
             style={{width:"33%",float:"left",paddingRight:"5px"}}
             itemLayout="horizontal"
-            dataSource={todos.end}
+            dataSource={todo.end}
             renderItem={item => (
             <List.Item>
                 <List.Item.Meta
                 title={<span>{item.name}</span>}
                 description={<>
-                                <span>{item.group_name}</span> / <span>{item.reg_date}</span>
+                                <span>{item.name}</span> / <span>{item.reg_date}</span>
+                                <Button style={{float:"right"}} shape="circle" icon={<RestOutlined />} />
+                            </>
+                            }
+                />
+            </List.Item>
+            )}
+        />
+        <List
+            header={<div>보류</div>}
+            style={{width:"33%",float:"left",paddingRight:"5px"}}
+            itemLayout="horizontal"
+            dataSource={todo.pending}
+            renderItem={item => (
+            <List.Item>
+                <List.Item.Meta
+                title={<span>{item.name}</span>}
+                description={<>
+                                <span>{item.name}</span> / <span>{item.reg_date}</span>
                                 <Button style={{float:"right"}} shape="circle" icon={<RestOutlined />} />
                             </>
                             }

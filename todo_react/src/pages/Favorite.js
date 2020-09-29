@@ -1,18 +1,20 @@
 import React from 'react'
-import API from 'API'
+import API from 'Api'
 import { List, Button } from 'antd';
+import { RestOutlined  } from '@ant-design/icons';
 
 
 export default function Favorite() {
-    const [favo, setFavo] = React.useState([])
+    const [favo, setFavo] = React.useState([]);
+    
     React.useEffect(()=>{
-        API.get("/favorite").then(res=> {
+        API.get("/api/favorite/").then(res => {
             const{data} = res;
-            setFavo(data)
+            setFavo(data);
         }).catch((error)=>{
             console.log('오류')
         })
-    })
+    }, [])
     
     return(
       <>
@@ -25,7 +27,7 @@ export default function Favorite() {
                 <List.Item.Meta
                 description={<>
                                 <span>{item.name}</span> / <span>{item.reg_date}</span>
-                                
+                                <Button style={{float:"right"}} shape="circle" icon={<RestOutlined />} />
                                 </>
                             }
       />

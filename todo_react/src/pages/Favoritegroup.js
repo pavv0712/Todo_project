@@ -1,16 +1,16 @@
 import React from 'react'
-import API from 'API'
+import API from 'Api'
 import { List, Button } from 'antd';
+import { RestOutlined  } from '@ant-design/icons';
 
 export default function FavoriteGroup(){
-    const[group, setGroup] = React.useState([])
+    const[favogroup, setGroup] = React.useState([])
     React.useEffect(()=>{
-        API.get("/favogroup").then(res=>{
+        API.get("/api/favogroup/").then(res=>{
             const {data} = res;
             setGroup(data)
         })
-
-    })
+    },[])
     
     
     return(
@@ -18,13 +18,13 @@ export default function FavoriteGroup(){
         <List
             style={{width:"33%",float:"left",paddingRight:"5px"}}
             itemLayout="horizontal"
-            dataSource={group}
+            dataSource={favogroup}
             renderItem={item => (
             <List.Item>
                 <List.Item.Meta
                 description={<>
                                 <span>{item.name}</span> / <span>{item.reg_date}</span>
-                                
+                                <Button style={{float:"right"}} shape="circle" icon={<RestOutlined />} />
                                 </>
                             }
       />

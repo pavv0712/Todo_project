@@ -16,7 +16,6 @@ function App() {
         </h1>
       </div>
       <div id='menu'>
-        Home
         <TodoAntd/>
       </div>
     </div>
