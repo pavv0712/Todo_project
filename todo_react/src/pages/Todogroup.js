@@ -1,9 +1,21 @@
 import API from 'Api'
 import React from 'react'
-import { List, Button } from 'antd';
-import { RestOutlined  } from '@ant-design/icons';
+import { List, Button, Modal } from 'antd';
+import { RestOutlined, UserAddOutlined  } from '@ant-design/icons';
+import { Form, Input, Select, DatePicker } from 'antd';
 
 export default function TodoGroup() {
+    
+    const [state, setState] = React.useState({
+        visible: false,
+      })
+      
+    const showModal = () => {
+        setState({
+          visible: true,
+        });
+      };
+    
     const [todogroup, setGroup] = React.useState([])
     React.useEffect(()=> {
         API.get("/api/todogroup/").then(res=> {
@@ -14,6 +26,11 @@ export default function TodoGroup() {
     
     return(
         <>
+        <div id='button'>
+        <Button onClick={showModal} icon={<UserAddOutlined />}>
+          추가
+        </Button>
+        </div>
         <List
             style={{width:"33%",float:"left",paddingRight:"5px"}}
             itemLayout="horizontal"

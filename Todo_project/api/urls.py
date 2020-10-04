@@ -11,5 +11,6 @@ router.register('favogroup', views.FavoriteGroupViewSet)
 
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('allTodo', views.TodoAllSelectView)
 ]

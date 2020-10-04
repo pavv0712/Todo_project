@@ -27,4 +27,6 @@ html, body{
     float: left;
 }
 
-
+#menu #content #button{
+    margin-left: 650px;
+}

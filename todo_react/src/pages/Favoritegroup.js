@@ -1,7 +1,8 @@
 import React from 'react'
 import API from 'Api'
-import { List, Button } from 'antd';
-import { RestOutlined  } from '@ant-design/icons';
+import { List, Button, Modal } from 'antd';
+import { RestOutlined, UserAddOutlined  } from '@ant-design/icons';
+import { Form, Input, Select, DatePicker } from 'antd';
 
 export default function FavoriteGroup(){
     const[favogroup, setGroup] = React.useState([])
@@ -11,10 +12,16 @@ export default function FavoriteGroup(){
             setGroup(data)
         })
     },[])
+
     
     
     return(
         <>
+        <div id='button'>
+        <Button onClick={showModal} icon={<UserAddOutlined />}>
+          추가
+        </Button>
+        </div>
         <List
             style={{width:"33%",float:"left",paddingRight:"5px"}}
             itemLayout="horizontal"
