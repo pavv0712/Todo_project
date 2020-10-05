@@ -1,11 +1,7 @@
+import API from 'Api';
 import React from 'react'
-import API from 'Api'
 import { List, Button, Modal } from 'antd';
-<<<<<<< HEAD
-import { DeleteOutlined , UserAddOutlined  } from '@ant-design/icons';
-=======
-import { RestOutlined, UserAddOutlined  } from '@ant-design/icons';
->>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
+import { DeleteOutlined, UserAddOutlined  } from '@ant-design/icons';
 import { Form, Input, Select, DatePicker } from 'antd';
 
 export default function FavoriteGroup(){
