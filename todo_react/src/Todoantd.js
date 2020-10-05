@@ -1,6 +1,6 @@
 import React from 'react'
-import { Menu } from 'antd';
-import { HeartOutlined, ScheduleOutlined } from '@ant-design/icons';
+import { Menu, Button, Modal} from 'antd';
+import { HeartOutlined, ScheduleOutlined, UserAddOutlined } from '@ant-design/icons';
 import { BrowserRouter,Route, Link, Switch} from 'react-router-dom';
 
 import Favorite from 'pages/Favorite';
@@ -15,7 +15,9 @@ export default function TodoAntd() {
     const handleClick = e => {
       console.log('click ', e);
     };
-    return(
+
+    
+return(
         
         <>
 <BrowserRouter>
@@ -67,8 +69,10 @@ export default function TodoAntd() {
       
       </Menu>
     </div>
+  
     
-    <div id='content'>
+    <div id='content'> 
+       
       <Switch>
       <Route exact path="/" component={Favorite}></Route>
       <Route path="/favorite" component={Favorite}></Route>

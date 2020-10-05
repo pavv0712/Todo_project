@@ -1,7 +1,11 @@
 import React from 'react'
 import API from 'Api'
 import { List, Button, Modal } from 'antd';
+<<<<<<< HEAD
 import { DeleteOutlined , UserAddOutlined  } from '@ant-design/icons';
+=======
+import { RestOutlined, UserAddOutlined  } from '@ant-design/icons';
+>>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
 import { Form, Input, Select, DatePicker } from 'antd';
 
 export default function FavoriteGroup(){
@@ -15,6 +19,7 @@ export default function FavoriteGroup(){
             setfavoGroup(data)
         })
     },[])
+
     
     const [state, setState] = React.useState({
         visible: false,

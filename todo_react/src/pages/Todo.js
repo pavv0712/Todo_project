@@ -1,7 +1,13 @@
 import API from 'Api';
+<<<<<<< HEAD
 import React, {Component} from 'react'
 import { List, Button, Modal } from 'antd';
 import { DeleteOutlined, UserAddOutlined  } from '@ant-design/icons';
+=======
+import React from 'react'
+import { List, Button, Modal } from 'antd';
+import { RestOutlined, UserAddOutlined  } from '@ant-design/icons';
+>>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
 import { Form, Input, Select, DatePicker } from 'antd';
 
 export default function Todo() {
@@ -15,6 +21,7 @@ export default function Todo() {
     const [form] = Form.useForm();
 
     const [group, setGroup] = React.useState([]);
+<<<<<<< HEAD
     
     const [state, setState] = React.useState({
             visible: false,
@@ -77,6 +84,60 @@ export default function Todo() {
             setTodo(prev => data);
         })
     }
+=======
+    
+    const [state, setState] = React.useState({
+            visible: false,
+          })
+        
+    const showModal = () => {
+            setState({
+              visible: true,
+            });
+          };
+        
+          const handleOk = () => {
+            setState({ visible: true });
+          };
+        
+          const handleCancel = () => {
+            setState({ visible: false });
+          };
+    
+          const onFinish = e => {
+              e.end_date = e.end_date.format("YYYY-MM-DD")
+              console.log(e);
+
+              API.post("api/todo/", e).then(res => {
+                  return API.get("api/allTodo")
+              }).then(
+                  res=>{
+                      const {data} = res;
+                      setTodo(prev => data);
+                      form.resetFields();
+                      setState(prev => ({
+                          visible: false
+                      }))
+                  }
+              )
+            };
+
+    React.useEffect(()=> {
+        
+        API.get("/api/allTodo").then(res=> {
+            const {data} = res;
+            setTodo(prev => data);
+        })
+    }, [])
+
+    React.useEffect(()=>{
+        API.get("/api/todogroup/").then(res=>{
+            const{data} = res;
+            setGroup(prev => data);
+        })
+    },[])
+
+>>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
 
 
     return (

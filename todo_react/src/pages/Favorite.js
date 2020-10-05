@@ -1,14 +1,22 @@
 import API from 'Api';
 import React from 'react'
+<<<<<<< HEAD
 import { List, Button, Modal } from 'antd';
 import { DeleteOutlined, UserAddOutlined  } from '@ant-design/icons';
 import { Form, Input, Select} from 'antd';
+=======
+import API from 'Api'
+import { List, Button, Modal } from 'antd';
+import { RestOutlined, UserAddOutlined  } from '@ant-design/icons';
+import { Form, Input, Select, DatePicker } from 'antd';
+>>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
 
 export default function Favorite() {
     const [favo, setFavo] = React.useState([]);
     const [form] = Form.useForm();
     const [group, setGroup] = React.useState([])
 
+<<<<<<< HEAD
     const [state, setState] = React.useState({
         visible: false,
       })
@@ -51,6 +59,9 @@ export default function Favorite() {
       },[])
 
       React.useEffect(()=>{
+=======
+    React.useEffect(()=>{
+>>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
         API.get("/api/favorite/").then(res => {
             const{data} = res;
             setFavo(data);
@@ -59,6 +70,50 @@ export default function Favorite() {
         })
     }, [])
 
+<<<<<<< HEAD
+=======
+    const [state, setState] = React.useState({
+        visible: false,
+      })
+    
+      const showModal = () => {
+        setState({
+          visible: true,
+        });
+      };
+    
+      const handleOk = () => {
+        setState({visible: false})
+      };
+    
+      const handleCancel = () => {
+        setState({ visible: false });
+      };
+    
+        
+      const onFinish = e => {
+        e.end_date = e.end_date.format("YYYY-MM-DD")
+        console.log(e);
+
+        API.post("api/favorite/", e).then(res => {
+    
+                const {data} = res;
+                setFavo(prev => data);
+                form.resetFields();
+                setState(prev => ({
+                    visible: false
+                }))
+            }
+        )
+        };
+        React.useEffect(()=>{
+          API.get("/api/favogroup/").then(res=>{
+              const{data} = res;
+              setGroup(prev => data);
+          })
+      },[])
+
+>>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
     return(
       <>
         <div id='button'>
@@ -119,6 +174,16 @@ export default function Favorite() {
          <Input />
       </Form.Item>
       
+<<<<<<< HEAD
+=======
+      <Form.Item
+        label="end_date"
+        name="enddate"
+
+      >
+         <DatePicker />
+      </Form.Item>
+>>>>>>> d98fb4bd8ec58535ff8ccb70081456b8ceb00512
 
       <Form.Item
         label="그룹"
