@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -79,12 +79,31 @@ WSGI_APPLICATION = 'Todo_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+from . import mysql_setting
+
+DATABASES = mysql_setting.DATABASES
+
+# {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+from . import s3
+
+AWS_ACCESS_KEY_ID = s3.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = s3.AWS_SECRET_ACCESS_KEY
+AWS_REGION = s3.AWS_REGION
+AWS_STORAGE_BUCKET_NAME = s3.AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_CUSTOM_DOMAIN = s3.AWS_S3_CUSTOM_DOMAIN
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
 }
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
 
 
 # Password validation
@@ -140,4 +159,3 @@ JWT_AUTH = {
 
 CORS_ORIGIN_ALLOW_ALL=True
 CORS_ALLOW_CREDENTIALS=True
-
