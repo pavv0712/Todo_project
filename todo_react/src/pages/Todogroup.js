@@ -19,15 +19,7 @@ export default function TodoGroup() {
     const [todogroup, setGroup] = React.useState([])
     const [form] = Form.useForm();
    
-    const [state, setState] = React.useState({
-        visible: false,
-      })
-      
-    const showModal = () => {
-        setState({
-          visible: true,
-        });
-      };
+
       const handleOk = () => {
         setState({visible: false})
       };
